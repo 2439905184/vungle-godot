@@ -1,0 +1,2 @@
+include ':Vungle'
+rootProject.name = "VunglePlugin"
