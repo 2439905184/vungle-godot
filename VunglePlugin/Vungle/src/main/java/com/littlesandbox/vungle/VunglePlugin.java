@@ -73,4 +73,61 @@ public class VunglePlugin extends GodotPlugin
 		}
 	}
 	
-}
+	//播放bannder广告
+	@UsedByGodot
+	public void show_banner_ad()
+	{
+		 // Load Ad Implementation
+  if (Vungle.isInitialized()) {
+      Banners.loadBanner("YOUR_MREC_PLACEMENT_REFERENCE_ID", AdConfig.AdSize.BANNER, new LoadAdCallback() {
+        @Override
+        public void onAdLoad(String placementReferenceId) {
+            // id is placementReferenceId
+        }
+		 if (Banners.canPlayAd("YOUR_MREC_PLACEMENT_REFERENCE_ID", AdConfig.AdSize.BANNER)) {
+        VungleBanner vungleBanner = Banners.getBanner("YOUR_MREC_PLACEMENT_REFERENCE_ID", AdConfig.AdSize.BANNER, new PlayAdCallback() {
+        @Override
+        public void onAdStart(String id) { 
+            // Ad experience started
+        }
+        
+        @Override
+  			public void onAdViewed(String id) { 
+    			// Ad has rendered
+        }
+
+        @Override
+        public void onAdEnd(String id) {
+            // Ad experience ended
+        }
+
+        @Override
+        public void onAdClick(String id) {
+            // User clicked on ad
+        }
+
+        @Override
+        public void onAdRewarded(String id) {
+            // User earned reward for watching an ad
+        }
+
+        @Override
+        public void onAdLeftApplication(String id) {
+            // User has left app during an ad experience
+        }
+
+        @Override
+        public void onError(String id, VungleException exception) { 
+            // Ad failed to play
+        }
+        });
+        container.addView(vungleBanner);
+    }
+        @Override
+        public void onError(String placementReferenceId, VungleException e) {
+            // Load ad error occurred - e.getLocalizedMessage() contains error message
+        }
+    });
+  }
+	}
+	}
