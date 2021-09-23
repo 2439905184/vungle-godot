@@ -29,10 +29,16 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
-    testImplementation 'junit:junit:4.+'
+    /*testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'*/
+	 // Vungle SDK
+  implementation files('libs/vungle-android-sdk-6.10.1.aar')
+
+  // Required Third-party Dependencies
+  implementation files('libs/gson-2.8.6.jar')
+  implementation files('libs/okhttp-3.12.12.jar')
+  implementation files('libs/okio-1.15.0.jar')
 }
