@@ -37,8 +37,10 @@ repositories
             //google()
         }
 dependencies {
+    implementation 'androidx.annotation:annotation:1.2.0'
     debugCompileOnly(name:'godot-lib.debug',ext:'aar')
     releaseCompileOnly(name:'godot-lib.release',ext:'aar')
+    implementation(name:'vungle-android-sdk-6.10.2',ext:'aar')
   /*  implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
     testImplementation 'junit:junit:4.+'
