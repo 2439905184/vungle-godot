@@ -10,6 +10,7 @@ import com.vungle.warren.PlayAdCallback;
 import com.vungle.warren.Vungle;
 import com.vungle.warren.VungleBanner;
 import com.vungle.warren.error.VungleException;
+import com.vungle.warren.network.VungleApi;
 
 import org.godotengine.godot.Godot;
 import org.godotengine.godot.plugin.GodotPlugin;
@@ -25,6 +26,8 @@ public class VunglePlugin extends GodotPlugin
     }
     public SignalInfo vungle_init_ok = new SignalInfo("VungleOK");
     public SignalInfo vungle_init_failed = new SignalInfo("VungleFailed");
+    public SignalInfo vungle_ad_ok = new SignalInfo("VungleAdOk");
+    public SignalInfo vungle_ad_error = new SignalInfo("VungleAdError");
     @Override
     public String getPluginName() {
         return "VunglePlugin";
@@ -48,6 +51,21 @@ public class VunglePlugin extends GodotPlugin
 			Log.i(tag, "广告缓存完毕" + placementId);
 		}
 	}
+	class VungleLoadAdCallback implements  LoadAdCallback
+	{
+		@Override
+		public void onAdLoad(String s)
+		{
+			Log.i(tag,"广告加载成功"+s);
+			emitSignal(vungle_ad_ok.getName());
+		}
+		@Override
+		public void onError(String s, VungleException e) {
+			Log.e(tag,"广告加载失败");
+			Log.e(s,e.toString());
+			emitSignal(vungle_ad_error.getName());
+		}
+	}
 	//初始化sdk appid由vungle平台提供
     @UsedByGodot
     public void init(String appId)
@@ -60,65 +78,16 @@ public class VunglePlugin extends GodotPlugin
 	{
 		if(Vungle.isInitialized())
 		{
-			Vungle.loadAd("placementId",new  LoadAdCallback() {
-			@Override
-			public void onAdLoad(String placementReferenceId)
-			{ 
-				if(Vungle.canPlayAd(placementId))
-				{
-					Vungle.playAd("PLACEMENT_ID", null, new PlayAdCallback()
-					{
-						@Override
-						public void creativeId(String s) {
-						}
-						@Override
-					public void onAdStart(String placementReferenceId) { } 
-					@Override
-					public void onAdEnd(String placementReferenceId, boolean completed, boolean isCTAClicked) { }
-
-						@Override
-						public void onAdEnd(String s) {
-
-						}
-
-						@Override
-						public void onAdClick(String s) {
-
-						}
-
-						@Override
-						public void onAdRewarded(String s) {
-
-						}
-
-						@Override
-						public void onAdLeftApplication(String s) {
-
-						}
-
-						@Override
-					public void onError(String placementReferenceId, VungleException exception) { }
-
-						@Override
-						public void onAdViewed(String s) {
-
-						}
-					});
-				}
-			}
-			@Override
-			public void onError(String placementReferenceId, VungleException exception)
-			{
-				Log.e(placementReferenceId,exception.toString());
-			}
-		  });
-		
+			Vungle.loadAd("placementId", new VungleLoadAdCallback());
 		}
 	}
 	//播放bannder广告
 	@UsedByGodot
 	public void show_banner()
 	{
+		if(Vungle.isInitialized())
+		{
 
+		}
 	}
 	}
