@@ -5,7 +5,9 @@ Vungle-Godot-Plugin广告插件
 
 #### 软件架构
 软件架构说明
-
+#### 分支
+godot-3.3.x适用于godot>3.3
+godot-3.2.x适用于godot>3.2
 
 #### 安装教程
 

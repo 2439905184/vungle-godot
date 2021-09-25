@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://ttf.tres" type="DynamicFont" id=1]
+[ext_resource path="res://VBoxContainer.gd" type="Script" id=2]
+
+[node name="Node2D" type="Node2D"]
+__meta__ = {
+"_edit_horizontal_guides_": [ 852.306, 462.0 ],
+"_edit_vertical_guides_": [ 1095.0 ]
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 217.0
+margin_bottom = 97.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ad_type = "banner"
+
+[node name="getPlugin" type="Button" parent="VBoxContainer"]
+margin_right = 217.0
+margin_bottom = 43.0
+custom_fonts/font = ExtResource( 1 )
+text = "获得插件对象"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="init" type="Button" parent="VBoxContainer"]
+margin_top = 47.0
+margin_right = 217.0
+margin_bottom = 90.0
+custom_fonts/font = ExtResource( 1 )
+text = "初始化"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="playad" type="Button" parent="VBoxContainer"]
+margin_top = 94.0
+margin_right = 217.0
+margin_bottom = 137.0
+custom_fonts/font = ExtResource( 1 )
+text = "播放广告"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+margin_left = 226.994
+margin_right = 398.994
+margin_bottom = 78.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="plugin" type="Label" parent="VBoxContainer2"]
+margin_right = 181.0
+margin_bottom = 37.0
+custom_fonts/font = ExtResource( 1 )
+text = "广告插件:NULL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="initState" type="Label" parent="VBoxContainer2"]
+margin_top = 41.0
+margin_right = 181.0
+margin_bottom = 78.0
+custom_fonts/font = ExtResource( 1 )
+text = "初始化状态:null"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="playState" type="Label" parent="VBoxContainer2"]
+margin_top = 82.0
+margin_right = 181.0
+margin_bottom = 119.0
+custom_fonts/font = ExtResource( 1 )
+text = "播放状态:null"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="VBoxContainer/getPlugin" to="VBoxContainer" method="_on_getPlugin_pressed"]
+[connection signal="pressed" from="VBoxContainer/init" to="VBoxContainer" method="_on_init_pressed"]
+[connection signal="pressed" from="VBoxContainer/playad" to="VBoxContainer" method="_on_playad_pressed"]
