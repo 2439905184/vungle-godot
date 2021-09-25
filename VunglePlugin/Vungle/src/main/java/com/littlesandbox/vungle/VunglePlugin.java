@@ -81,13 +81,65 @@ public class VunglePlugin extends GodotPlugin
 			Vungle.loadAd("placementId", new VungleLoadAdCallback());
 		}
 	}
-	//播放bannder广告
+	//播放bannder广告 测试状态
+	/*
 	@UsedByGodot
-	public void show_banner()
+	public void show_banner(String placementId)
 	{
 		if(Vungle.isInitialized())
 		{
+			Banners.loadBanner(placementId,AdConfig.AdSize.BANNER,new VungleLoadAdCallback());
+			if(Banners.canPlayAd(placementId,AdConfig.AdSize.BANNER))
+			{
+				VungleBanner vungleBanner = Banners.getBanner("YOUR_MREC_PLACEMENT_REFERENCE_ID", AdConfig.AdSize.BANNER, new PlayAdCallback()
+				{
 
+					@Override
+					public void creativeId(String s) {
+
+					}
+
+					@Override
+					public void onAdStart(String s) {
+
+					}
+
+					@Override
+					public void onAdEnd(String s, boolean b, boolean b1) {
+
+					}
+
+					@Override
+					public void onAdEnd(String s) {
+
+					}
+
+					@Override
+					public void onAdClick(String s) {
+
+					}
+
+					@Override
+					public void onAdRewarded(String s) {
+
+					}
+
+					@Override
+					public void onAdLeftApplication(String s) {
+
+					}
+
+					@Override
+					public void onError(String s, VungleException e) {
+
+					}
+
+					@Override
+					public void onAdViewed(String s) {
+
+					}
+				});
+			}
 		}
-	}
+	}*/
 	}
